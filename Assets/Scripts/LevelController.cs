@@ -17,8 +17,9 @@ public class LevelController : MonoBehaviour
     {
         
     }
-    public void UpdateScore(int newScore) {
+    public void UpdateScore(int newScore)
+    {
         HudText.text = newScore.ToString();
-            }
+    }
     
 }

@@ -14,11 +14,31 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private bool isFacingRight = true;
     private bool Coin;
+    public Transform attackCheck;
+    private bool isAttacking = false;
 
     private LevelController levelController;
     private int score = 0;
 
     // Start is called before the first frame update
+    private void Attack()
+    {
+        Debug.Log("Attack");
+        animator.SetTrigger("Attack");
+        var colliders = Physics2D.OverlapCircleAll(attackCheck.position, 0.2f);
+        Debug.Log(colliders.Length);
+        for (int i=0; i<colliders.Length; i++)
+        {
+            Debug.Log(colliders[i].gameObject.tag);
+
+            if (colliders[i].CompareTag("Enemy"))
+            {
+                EnemyController enemy = colliders[i].gameObject.GetComponent<EnemyController>();
+                enemy.takeDamage();
+
+            }
+        }
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -31,6 +51,16 @@ public class PlayerController : MonoBehaviour
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         isJumpPressed = Input.GetButton("Jump");
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            isAttacking = true;
+            Attack();
+        }
+        else
+        {
+            isAttacking = false;
+        }
 
         animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
         if ((rb.velocity.x < 0 && isFacingRight) || (rb.velocity.x > 0 && !isFacingRight)){
