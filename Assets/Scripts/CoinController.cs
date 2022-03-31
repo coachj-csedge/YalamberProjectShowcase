@@ -7,13 +7,13 @@ public class CoinController : MonoBehaviour
 {
     public int value = 10;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Coin Collision");
+        Debug.Log("Coin Trigger Enter");
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Destroying Coin");
             Destroy(gameObject);
         }
     }
+
 }

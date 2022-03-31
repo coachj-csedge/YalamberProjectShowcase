@@ -25,9 +25,10 @@ public class Parallax : MonoBehaviour
         float distance = cam.transform.position.x * parallaxSpeed;
         Vector3 delta = new Vector3(origin + distance, transform.position.y, transform.position.z);
         transform.position = delta;
-        if (temp > origin + length / 2)
+        /*if (temp > origin + length / 2)
             origin += length;
         else if (temp < origin - (length / 2))
             origin -= length;
+        */
     }
 }
