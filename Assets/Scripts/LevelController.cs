@@ -7,6 +7,8 @@ public class LevelController : MonoBehaviour
     // Start is called before the first frame update
 
     public TMPro.TMP_Text HudText;
+    public TMPro.TMP_Text Health;
+
     void Start()
     {
         
@@ -20,6 +22,11 @@ public class LevelController : MonoBehaviour
     public void UpdateScore(int newScore)
     {
         HudText.text = newScore.ToString();
+    }
+
+    public void UpdateHealth(int newHealth)
+    {
+        Health.text = newHealth.ToString();
     }
     
 }

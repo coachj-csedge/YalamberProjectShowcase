@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
 
     private LevelController levelController;
     private int score = 0;
+    private int health = 100;
 
     // Start is called before the first frame update
     private void Attack()
@@ -38,12 +39,16 @@ public class PlayerController : MonoBehaviour
 
             }
         }
+        isAttacking = false;
     }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         levelController = GameObject.Find("LevelController").GetComponent<LevelController>();
+
+        levelController.UpdateHealth(health);
+        levelController.UpdateScore(score);
     }
 
     // Update is called once per frame
@@ -52,7 +57,7 @@ public class PlayerController : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         isJumpPressed = Input.GetButton("Jump");
 
-        if (Input.GetButtonDown("Fire1"))
+        if (!isAttacking && Input.GetButtonDown("Fire1"))
         {
             isAttacking = true;
             Attack();
@@ -89,7 +94,16 @@ public class PlayerController : MonoBehaviour
             score += coinValue;
             levelController.UpdateScore(score);
         }
-
+        else if(collision.gameObject.CompareTag("Projectile"))
+        {
+            Debug.Log("Taking Damage");
+            animator.SetTrigger("Damage");
+            var projectile = collision.gameObject.GetComponent<ProjectileBehavior>();
+            int value = projectile.damage;
+            projectile.damage = 0;
+            health -= value;
+            levelController.UpdateHealth(health);
+        }
         else
         {
             isGrounded = true;
@@ -106,10 +120,14 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Coin"))
         {
             Debug.Log("Coin Exit!");
-        }
-        Debug.Log("Not Grounded");
 
-        isGrounded = false;
+        }
+        else
+        {
+            Debug.Log("Not Grounded");
+
+            isGrounded = false;
+        }
     }
 }
 

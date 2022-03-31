@@ -51,7 +51,7 @@ public class EnemyController : MonoBehaviour
         {
             Debug.Log("Collision object: " + gameObject.name);
             direction = -1.0f * direction;
-            Debug.Log("Changing Directin" + direction.ToString());
+            Debug.Log("Changing Direction" + direction.ToString());
             rb.velocity = new Vector2(force*direction*Time.fixedDeltaTime, rb.velocity.y);
             transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
         }
