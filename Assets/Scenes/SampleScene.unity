@@ -1967,7 +1967,7 @@ GameObject:
   m_Layer: 0
   m_Name: AttackCheck
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -3552,7 +3552,7 @@ Animator:
   m_GameObject: {fileID: 2012852778}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7619fc39077964d5d92f98cf1c99146a, type: 2}
+  m_Controller: {fileID: 9100000, guid: d1629c6a3b04a45eb943e192cdb6d534, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
